@@ -6,6 +6,8 @@ var operationSchema = new Schema({
   desc: String,
   active: Boolean,
   date: { type: Date, default: Date.now },
-  type: String
+  type: String,
   total: Number
 });
+
+module.exports = mongoose.model('operation', operationSchema);

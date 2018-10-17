@@ -7,3 +7,5 @@ var userSchema = new Schema({
 	pass:   String,
 	accounts: []
 });
+
+module.exports = mongoose.model('user', userSchema);
