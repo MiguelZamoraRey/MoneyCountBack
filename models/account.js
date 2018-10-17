@@ -5,7 +5,7 @@ var accountSchema = new Schema({
   name: String,
   desc: String,
   active: Boolean,
-  operations: [],
+  operations: [{ type: Schema.Types.ObjectId, ref: 'operation' }],
   total: Number
 });
 

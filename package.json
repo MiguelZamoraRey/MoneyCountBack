@@ -10,7 +10,10 @@
   "author": "mzrdeveloper",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "express": "^4.16.4",
+    "jwt-simple": "^0.5.5",
+    "moment": "^2.22.2",
     "mongoose": "^5.3.2"
   },
   "devDependencies": {

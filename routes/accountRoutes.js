@@ -3,16 +3,18 @@ var account  = mongoose.model('account');
 var express = require('express');
 var router = express.Router();
 
+var md_auth = require('../middleware/autenticated');
+
 var AccountController = require('../controllers/accountController');
 
-router.get('/accounts', AccountController.getAllAccounts);
+router.get('/accounts', md_auth.ensureAuth, AccountController.getAllAccounts);
 
-router.get('/account/:id', AccountController.getAccount);
+router.get('/account/:id', md_auth.ensureAuth, AccountController.getAccount);
 
-router.post('/account', AccountController.insertAccount);
+router.post('/account', md_auth.ensureAuth, AccountController.insertAccount);
 
-router.put('/account/:id', AccountController.updateAccount);
+router.put('/account/:id', md_auth.ensureAuth, AccountController.updateAccount);
 
-router.delete('/account/:id', AccountController.deleteAccount);
+router.delete('/account/:id', md_auth.ensureAuth, AccountController.deleteAccount);
 
 module.exports = router;

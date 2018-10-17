@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var operation  = mongoose.model('operation');
+var moment = require('moment');
 
 function getAllOperations(req, res){
     operation.find(function(err, operations) {
@@ -22,6 +23,7 @@ function getOperation(req, res){
 function insertOperation(req, res){
     console.log(req.body)
     const newOperation = new operation(req.body);
+    newOperation.date = moment().unix();
     newOperation.save(err => {
         if (err){
             return res.status(500).send(err);   

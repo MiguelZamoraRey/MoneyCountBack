@@ -3,16 +3,20 @@ var user  = mongoose.model('user');
 var express = require('express');
 var router = express.Router();
 
+var md_auth = require('../middleware/autenticated');
+
 var UserController = require('../controllers/userController');
 
-router.get('/users', UserController.getAllUsers);
+router.post('/login', UserController.loginUser);
 
-router.get('/user/:id', UserController.getUser);
+router.get('/users', md_auth.ensureAuth, UserController.getAllUsers);
 
-router.post('/user', UserController.insertUser);
+router.get('/user/:id', md_auth.ensureAuth, UserController.getUser);
 
-router.put('/user/:id', UserController.updateUser);
+router.post('/user', md_auth.ensureAuth, UserController.insertUser);
 
-router.delete('/user/:id', UserController.deleteUser);
+router.put('/user/:id', md_auth.ensureAuth, UserController.updateUser);
+
+router.delete('/user/:id', md_auth.ensureAuth, UserController.deleteUser);
 
 module.exports = router;
